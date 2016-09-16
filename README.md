@@ -1,5 +1,7 @@
 # README
 
+Based on https://www.airpair.com/reactjs/posts/reactjs-a-guide-for-rails-developers, with CoffeeScript converted to JSX
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
