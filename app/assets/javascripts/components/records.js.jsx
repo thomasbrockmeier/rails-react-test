@@ -19,21 +19,29 @@ var Records = React.createClass({
     });
   },
 
+  deleteRecord: function(record) {
+    var records = this.state.records.slice();
+    records.splice(records.indexOf(record), 1);
+    this.replaceState({
+      records: records
+    });
+  },
+
   credits: function() {
     var credits = this.state.records.filter(function(val) {
-      val.amount >= 0;
+      return val.amount >= 0;
     });
     return credits.reduce(function(prev, curr) {
-      prev + parseFloat(curr.amount)
+      return prev + parseFloat(curr.amount)
     }, 0);
   },
 
   debits: function() {
     var debits = this.state.records.filter(function(val) {
-      val.amount < 0;
+      return val.amount < 0;
     });
     return debits.reduce(function(prev, curr) {
-      prev + parseFloat(curr.amount)
+      return prev + parseFloat(curr.amount)
     }, 0);
   },
 
@@ -59,22 +67,23 @@ var Records = React.createClass({
                    amount={ this.balance() }
                    text='Balance'
         />
-        <RecordForm handleNewRecord={ this.addRecord } />
+      <RecordForm handleNewRecord={ this.addRecord } />
         <table className='table table-bordered'>
           <thead>
             <tr>
               <th>Date</th>
               <th>Title</th>
               <th>Amount</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
             { this.state.records.map( function(r) {
               return <Record key={r.id}
                              record={r}
+                             handleDeleteRecord={ this.deleteRecord }
                      />
-              }
-            )}
+            }.bind(this))}
           </tbody>
         </table>
       </div>

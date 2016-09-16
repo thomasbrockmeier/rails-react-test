@@ -24,11 +24,7 @@ var RecordForm = React.createClass({
         this.setState(this.getInitialState());
       }.bind(this),
       'JSON'
-    ).done(function() {
-      console.log("done");
-    }).fail(function() {
-      console.log("fail");
-    });
+    );
   },
 
   valid: function() {
@@ -38,7 +34,7 @@ var RecordForm = React.createClass({
   render: function() {
     return(
       <form className='form-inline'
-            onSubmit={ this. handleSubmit }
+            onSubmit={ this.handleSubmit }
       >
         <div className='form-group'>
           <input type='text'
